@@ -402,11 +402,31 @@ async function savePDF() {
     const canvas = await html2canvas(card, { quality:0.95, backgroundColor:"#0C0C0E", scale:2 });
     const img = canvas.toDataURL("image/jpeg", 0.95);
     const w = canvas.width, h = canvas.height;
-    const { jsPDF } = await import("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js");
-    const doc = new jsPDF({ orientation: w>h?"landscape":"portrait", unit:"px", format:[w,h] });
-    doc.addImage(img, "JPEG", 0, 0, w, h);
-    doc.save("神谕占卜_" + new Date().toISOString().slice(0,10) + ".pdf");
-  } catch(e) { alert("导出PDF失败，请重试。"); }
+    const fname = "神谕占卜_" + new Date().toISOString().slice(0,10);
+    const JS = await loadJsPDF();
+    if (JS) {
+      const doc = new JS({ orientation: w>h?"landscape":"portrait", unit:"px", format:[w,h] });
+      doc.addImage(img, "JPEG", 0, 0, w, h);
+      doc.save(fname + ".pdf");
+      return;
+    }
+    // jsPDF 加载失败时，退化为下载 PNG 长图，保证总能导出
+    const a = document.createElement("a");
+    a.href = canvas.toDataURL("image/png");
+    a.download = fname + ".png";
+    document.body.appendChild(a); a.click(); a.remove();
+  } catch(e) { alert("导出失败，请重试。"); }
+}
+// UMD 包经 <script> 加载后挂到 window.jspdf；不能用 import() 解构（无 ESM 具名导出）
+function loadJsPDF() {
+  return new Promise((resolve) => {
+    if (window.jspdf && window.jspdf.jsPDF) return resolve(window.jspdf.jsPDF);
+    const s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+    s.onload = () => resolve((window.jspdf && window.jspdf.jsPDF) || null);
+    s.onerror = () => resolve(null);
+    document.head.appendChild(s);
+  });
 }
 
 function openSettings() {
