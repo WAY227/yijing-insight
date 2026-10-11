@@ -1,0 +1,14 @@
+# 原站参考素材（版权原因不上传）
+_ref/
+
+# Python 运行/调试产物
+__pycache__/
+*.pyc
+_repro.py
+divine_t*.json
+
+# 本地临时截图
+docs/_*.png
+
+# 证书私钥
+*.pem
