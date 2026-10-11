@@ -11,6 +11,8 @@
 ![AI](https://img.shields.io/badge/AI-Gemini·可选-8E75B2?logo=google&logoColor=white)
 ![依赖](https://img.shields.io/badge/服务端-零依赖·纯Python-3776AB?logo=python&logoColor=white)
 
+**🔮 在线直接开卦 → [way227.github.io/yijing-insight](https://way227.github.io/yijing-insight/)**
+
 **请示神谕 · Seek the Wisdom**
 
 ![起卦首页](docs/home.png)
@@ -36,6 +38,10 @@
 - 🚀 **零构建、零依赖** —— 前端就一个 `index.html`（由 `build.py` 注入数据生成）；服务端是纯 Python 标准库的单文件
 
 ## 🚀 快速开始
+
+### 方式零 · 在线玩（什么都不用装）
+
+打开 **[way227.github.io/yijing-insight](https://way227.github.io/yijing-insight/)** 即可开卦：本地断卦 + 直连 Gemini 全部可用。
 
 ### 方式一 · 直接打开（最简单）
 
