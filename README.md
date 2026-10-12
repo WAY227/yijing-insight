@@ -110,7 +110,7 @@ python build.py    # 重新生成 index.html
 
 ## 🤝 贡献
 
-欢迎提 Issue 和 PR！改 `build.py` 模板后跑一遍 `python build.py` 即可，无其他构建步骤。
+欢迎提 Issue 和 PR！改 `build.py` 模板后跑一遍 `python build.py` 即可，无其他构建步骤。开发细节与项目地图见 [AGENTS.md](AGENTS.md)。
 
 ## 📄 License
 
